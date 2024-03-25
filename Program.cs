@@ -18,11 +18,11 @@ namespace AOTTableViewerNetFramework
         {
             IMetadataProvider diskMetadataProvider = GetDiskMetadataProvider();
 
-            //add list of models or just 1 model for export
-            List<string> listOfModels = new List<string>
-            {
-                "Sable37 EDI",
-            };
+            ////add list of models or just 1 model for export
+            //List<string> listOfModels = new List<string>
+            //{
+            //    "Sable37 EDI",
+            //};
 
             int choice;
             do
@@ -46,6 +46,11 @@ namespace AOTTableViewerNetFramework
                     case 1:
                         Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Magenta;
+                        DisplayModelsFromDiskProvider(diskMetadataProvider);
+
+                        Console.WriteLine("Enter the model name for the update: ");
+                        string tmp = Console.ReadLine();
+                        List<string> listOfModels = new List<string> {tmp};
                         Console.WriteLine("Saving CSV file with metadata to file...");
                         List<TableMetadataUpdate> csvTables = GetTablesFromModels(listOfModels, diskMetadataProvider);
                         ExportCsv(csvTables);
@@ -121,7 +126,7 @@ namespace AOTTableViewerNetFramework
                     csv.WriteRecords(csvTables);
                 }
             }
-            Console.WriteLine($"CSV file saved to {path}");
+            Console.WriteLine($"CSV file saved to {Application.StartupPath + path}");
         }
 
         static List<TableMetadataUpdate> ImportCsv()
