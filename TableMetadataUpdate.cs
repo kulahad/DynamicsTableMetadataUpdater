@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace AOTTableViewerNetFramework
 {
-    internal class TableMetadata
+    class TableMetadataUpdate
     {
         public string TableName { get; set; }
         public string TableType { get; set; }
         public string TableGroup { get; set; }
+        public string TableGroupNew { get; set; }
+
 
     }
 }
